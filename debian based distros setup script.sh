@@ -1,11 +1,12 @@
 #!/bin/bash
+# chmod 700 debian based distros setup script.sh
 # must run as root
 mainmenu () {
 	clear
  	tput setaf 6
 	tput bold
 	echo "============================================="
-	echo " --- Debian Based Distros Setup Script ---"
+	echo " ---- Debian Based Distros Setup Script ----"
 	echo "============================================="
 	tput sgr0 
 	tput setaf 3
