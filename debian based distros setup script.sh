@@ -36,8 +36,8 @@ badoption () {
 	quitscript
 }
 finish () {
-	clear
 	tput setaf 10
+	tput bold
 	echo "Done..."
 	tput setaf 9
 	echo "Rebooting..."
@@ -81,10 +81,13 @@ installApps () {
 	sudo apt-get install -y google-chrome-stable_current_amd64.deb
 	wget http://media.steampowered.com/client/installer/steam.deb
 	yes | dpkg -i steam.deb
+	sudo apt update -y
 	sudo apt upgrade -y
+	installFlatpak
+	sudo apt-get update -y
+	sudo apt-get upgrade -y
 	sudo apt autoremove -y
 	sudo apt autoclean -y
-	installFlatpak
 	tput sgr0
 	finish
 }
