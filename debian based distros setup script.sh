@@ -2,13 +2,13 @@
 # must run as root
 mainmenu () {
 	clear
- 	tput setaf 5
+ 	tput setaf 6
 	tput bold
 	echo "============================================="
 	echo " --- Debian Based Distros Setup Script ---"
 	echo "============================================="
 	tput sgr0 
-	tput setaf 4
+	tput setaf 3
 	echo "You can open this script in a text editor to see packages to be installed in detail."
 	tput setaf 1
 	echo "System will automatically reboot after the script is run!!!"
@@ -49,14 +49,17 @@ finish () {
 installFlatpak () {
 	flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 	flatpak remotes
-	flatpak install -y --noninteractive flathub com.spotify.Client
-	flatpak install -y --noninteractive flathub org.kde.kdenlive
-	flatpak install -y --noninteractive flathub org.onlyoffice.desktopeditors
-	flatpak install -y --noninteractive flathub com.visualstudio.code
+	flatpak install -y flathub com.spotify.Client
+	flatpak install -y flathub org.kde.kdenlive
+	flatpak install -y flathub org.onlyoffice.desktopeditors
+	flatpak install -y flathub com.visualstudio.code
+	flatpak install -y flathub org.kde.okular
 }
 removeApps(){
 	sudo apt-get purge -y thunderbird*
 	sudo apt-get remove --purge -y libreoffice*
+	sudo apt-get purge -y geary
+	sudo apt-get remove --purge -y evince
 	sudo apt purge -y snapd
 }
 installApps () {
@@ -66,11 +69,13 @@ installApps () {
 	tput sgr0
 	sleep 3
 	clear
+	tput setab 2
+	tput setaf 5
 	sudo apt update -y
 	removeApps
 	sudo apt update -y
 	sudo apt upgrade -y
-	sudo apt install -y synaptic gnome-boxes gparted vlc gnome-tweaks neofetch kazam gufw android-tools-adb adb android-tools-fastboot gimp htop transmission handbrake gnome-shell-extensions obs-studio default-jre flatpak wget curl
+	sudo apt install -y synaptic gnome-boxes gparted vlc gnome-tweaks neofetch kazam kolourpaint4 gufw android-tools-adb adb android-tools-fastboot gimp htop transmission handbrake gnome-shell-extensions obs-studio default-jre flatpak wget curl
 	sudo apt update -y
 	wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 	sudo apt-get install -y google-chrome-stable_current_amd64.deb
@@ -80,6 +85,7 @@ installApps () {
 	sudo apt autoremove -y
 	sudo apt autoclean -y
 	installFlatpak
+	tput sgr0
 	finish
 }
 # driver code
