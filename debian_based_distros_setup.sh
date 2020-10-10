@@ -1,5 +1,5 @@
 #!/bin/bash
-# chmod 700 debian based distros setup script.sh
+# chmod 700 debian_based_distros_setup.sh
 # must run as root
 mainmenu () {
 	clear
@@ -59,8 +59,8 @@ installFlatpak () {
 removeApps(){
 	sudo apt-get purge -y thunderbird*
 	sudo apt-get remove --purge -y libreoffice*
-	sudo apt-get purge -y geary
-	sudo apt-get remove --purge -y evince
+	sudo apt-get purge -y geary deja-dup
+	sudo apt-get remove --purge -y evince rhythmbox
 	sudo apt purge -y snapd
 }
 installApps () {
