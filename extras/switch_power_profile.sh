@@ -10,7 +10,6 @@ charging="Charging"
 limit=20 # minimum limit
 while true; do
     status=$(cat /sys/class/power_supply/BAT0/status) || exit
-    echo $status
     if [ "$status" = "$charging" ]; then # if machine is on charging mode then, switch to performance or battery profile according to capacity
         capacity=$(cat /sys/class/power_supply/BAT0/capacity) || exit
         if [ "$capacity" -lt "$limit" ]; then # if battery capacity is less than 20 but its charging then, switch to battery profile
